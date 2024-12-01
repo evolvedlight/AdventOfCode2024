@@ -10,8 +10,15 @@ foreach (var line in fileLines)
     lineB.Add(int.Parse(parts.Last()));
 }
 
+// Part 1
 lineA.Sort();
 lineB.Sort();
 var result = Enumerable.Zip(lineA, lineB).Select((numbers) => Math.Abs(numbers.First - numbers.Second)).Sum();
 
-Console.WriteLine(result);
+Console.WriteLine($"Part 1 result: {result}");
+
+// Part 2
+var lineBCounts = lineB.CountBy(x => x).ToDictionary();
+var resultDay2 = lineA.Select(x => x * lineBCounts.GetValueOrDefault(x, 0)).Sum();
+
+Console.WriteLine($"Part 2 result: {resultDay2}");
