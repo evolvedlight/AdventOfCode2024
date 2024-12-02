@@ -6,6 +6,19 @@ var numSafe = fileLines.Select(x => Part1.IsSafe(x.Split(' ').Select(x => int.Pa
 
 Console.WriteLine($"Number safe: {numSafe}");
 
-var numSafe2 = fileLines.Select(x => Part2.IsSafeBruteForce(x.Split(' ').Select(x => int.Parse(x)).ToList())).Where(x => x == true).Count();
+var safe2 = fileLines.Select(x => Part2.IsSafe(x.Split(' ').Select(x => int.Parse(x)).ToList())).ToList();
+var safe2BruteForce = fileLines.Select(x => Part2.IsSafeBruteForce(x.Split(' ').Select(x => int.Parse(x)).ToList())).ToList();
 
-Console.WriteLine(numSafe2);
+
+for (int i = 0; i < numSafe; i++)
+{
+    if (safe2[i] != safe2BruteForce[i])
+    {
+        var line = fileLines[i];
+        Console.WriteLine($"{line}: {safe2[i]} | {safe2BruteForce[i]}");
+    }
+    
+}
+
+Console.WriteLine(safe2.Where(x => x == true).Count());
+Console.WriteLine(safe2BruteForce.Where(x => x == true).Count());

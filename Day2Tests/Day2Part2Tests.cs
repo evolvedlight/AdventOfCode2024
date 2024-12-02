@@ -10,6 +10,8 @@ namespace Day2Tests
             List<int> report = [7, 6, 4, 2, 1];
 
             Assert.True(Part2.IsSafeBruteForce(report));
+
+            Assert.True(Part2.IsSafe(report));
         }
 
         [Fact]
@@ -18,6 +20,8 @@ namespace Day2Tests
             List<int> report = [1, 2, 7, 8, 9];
 
             Assert.False(Part2.IsSafeBruteForce(report));
+
+            Assert.False(Part2.IsSafe(report));
         }
 
         [Fact]
@@ -26,6 +30,7 @@ namespace Day2Tests
             List<int> report = [9, 7, 6, 2, 1];
 
             Assert.False(Part2.IsSafeBruteForce(report));
+            Assert.False(Part2.IsSafe(report));
         }
 
         [Fact]
@@ -34,6 +39,7 @@ namespace Day2Tests
             List<int> report = [1, 3, 2, 4, 5];
 
             Assert.True(Part2.IsSafeBruteForce(report));
+            Assert.True(Part2.IsSafe(report));
         }
 
         [Fact]
@@ -42,6 +48,7 @@ namespace Day2Tests
             List<int> report = [8, 6, 4, 4, 1];
 
             Assert.True(Part2.IsSafeBruteForce(report));
+            Assert.True(Part2.IsSafe(report));
         }
 
         [Fact]
@@ -50,6 +57,7 @@ namespace Day2Tests
             List<int> report = [1, 3, 6, 7, 9];
 
             Assert.True(Part2.IsSafeBruteForce(report));
+            Assert.True(Part2.IsSafe(report));
         }
 
         [Fact]
@@ -58,6 +66,7 @@ namespace Day2Tests
             List<int> report = [1, 3, 6, 7, 17];
 
             Assert.True(Part2.IsSafeBruteForce(report));
+            Assert.True(Part2.IsSafe(report));
         }
 
         [Fact]
@@ -66,6 +75,26 @@ namespace Day2Tests
             List<int> report = [1, 3, 6, 7, 17, 31];
 
             Assert.False(Part2.IsSafeBruteForce(report));
+            Assert.False(Part2.IsSafe(report));
+        }
+        
+        [Fact]
+        public void Day2Tests_SB3()
+        {
+            List<int> report = [43, 46, 48, 49, 52, 49, 52, 49];
+
+            Assert.False(Part2.IsSafeBruteForce(report));
+            Assert.False(Part2.IsSafe(report));
+        }
+        
+        [Fact]
+        public void Day2Tests_SB4()
+        {
+            List<int> report = [87, 85, 84, 81, 79, 82];
+
+            Assert.True(Part2.IsSafeBruteForce(report));
+            Assert.True(Part2.IsSafe(report));
+            
         }
     }
 }

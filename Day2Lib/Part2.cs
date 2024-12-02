@@ -1,4 +1,5 @@
 ﻿using System.Windows.Markup;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Day2Lib
 {
@@ -12,7 +13,7 @@ namespace Day2Lib
             }
             for (int i = 0; i <= records.Count; i++)
             {
-                var recordsPart = records[..i].Concat(records.Skip(i+1).ToList());
+                var recordsPart = records[..i].Concat(records.Skip(i + 1).ToList());
 
                 if (Part1.IsSafe(recordsPart))
                 {
@@ -22,55 +23,23 @@ namespace Day2Lib
             return false;
         }
 
-        public static bool IsSafe(List<int> records)
+        public static bool IsSafe(List<int> d)
         {
-
-            var (isSafe, unsafeIndex) = IsSafeLevels(records);
-
-            if (isSafe)
+            static bool InternalIsSafe(List<int> d, bool tolerateErrors = false)
             {
+                for (int i = 0; i < d.Count - 1; i++)
+                {
+                    int difference = d[i] - d[i + 1];
+                    bool isWithinRange = 1 <= difference && difference <= 3;
+
+                    if (!isWithinRange)
+                    {
+                        return tolerateErrors && Enumerable.Range(i, 2).Any(j => InternalIsSafe(d.Take(j).Concat(d.Skip(j + 1)).ToList()));
+                    }
+                }
                 return true;
             }
-
-            for (var i = unsafeIndex > 0 ? unsafeIndex - 1 : unsafeIndex; i <= unsafeIndex; i++)
-            {
-                (isSafe, _) = IsSafeLevels([.. records[..i], .. records[(i + 1)..]]);
-                if (isSafe)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        static (bool isSafe, int unsafeIndex) IsSafeLevels(List<int> records)
-        {
-            var (increasing, isSafeDiff) = Change(records[0], records[1]);
-
-            if (!isSafeDiff)
-            {
-                return (false, 0);
-            }
-
-            for (var i = 1; i < records.Count; i++)
-            {
-                var (increase, safeDiff) = Change(records[i], records[i+1]);
-                if (!isSafeDiff || increase != increasing)
-                {
-                    return (false, i);
-                }
-            }
-
-            return (true, -1);
-        }
-
-        static (bool increasing, bool isSafeDiff) Change(int a, int b)
-        {
-            var diff = b - a;
-            var increase = Math.Sign(diff) == 1;
-            var amount = Math.Abs(diff);
-            return (increase, amount is 1 or 2 or 3);
+            return InternalIsSafe(d, true) || InternalIsSafe(d.AsEnumerable().Reverse().ToList(), true);
         }
     }
 }
