@@ -65,7 +65,7 @@ namespace Day3Lib
                 }
                 if (enabled)
                 {
-                    sum += int.Parse(m.Groups[3].Value) * int.Parse(m.Groups[4].Value);
+                    sum += int.Parse(m.Groups["first"].Value) * int.Parse(m.Groups["second"].Value);
                 }
                 
             }
