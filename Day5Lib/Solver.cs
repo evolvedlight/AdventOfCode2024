@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,5 +70,26 @@ public class Solver
         }
         var ans = update[update.Count / 2];
         return ans;
+    }
+
+    public static int SolveP2Comparer(RulesAndPages input)
+    {
+        ComparePages compare = new(input.Rules.ToHashSet());
+        return input.Updates
+            .Where(x => !SortedCorrectly(x.ToArray(), compare))
+            .Sum(x => x.Order(compare).ElementAt(x.Count / 2));
+    }
+
+    static bool SortedCorrectly(int[] update, ComparePages comparer)
+            => update.SequenceEqual(update.Order(comparer));
+
+    class ComparePages(HashSet<(int, int)> rules) : IComparer<int>
+    {
+        public int Compare(int x, int y)
+        {
+            if (rules.Contains((x, y))) return -1;
+            if (rules.Contains((y, x))) return 1;
+            return 0;
+        }
     }
 }
