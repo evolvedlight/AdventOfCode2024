@@ -16,7 +16,6 @@ namespace Day11Lib
             long total = 0;
             for (int i = 0; i < _stones.Count; i++)
             {
-                Console.WriteLine(i);
                 total += CheckStoneSize(_stones[i], 25);
             }
 
@@ -28,7 +27,6 @@ namespace Day11Lib
             long total = 0;
             for (int i = 0; i < _stones.Count; i++)
             {
-                Console.WriteLine($"{i}/{_stones.Count}");
                 total += CheckStoneSize(_stones[i]);
             }
 
