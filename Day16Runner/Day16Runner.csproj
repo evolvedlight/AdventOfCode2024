@@ -8,29 +8,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Day15Lib\Day15Lib.csproj" />
+    <ProjectReference Include="..\Day16Lib\Day16Lib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="examplefat.txt">
+    <None Update="example5.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="examplesmallfat.txt">
+    <None Update="example4.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="testcorner.txt">
+    <None Update="example3.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="gridTiny.txt">
+    <None Update="example2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="examplesmall.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="example.txt">
+    <None Update="example1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
